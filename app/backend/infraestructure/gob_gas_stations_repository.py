@@ -78,7 +78,7 @@ class GasStationsRepository(IGasStationsRepository):
         )
 
     def fetch_data(self) -> list[GasStation]:
-        res = requests.get(self._api_location)
+        res = requests.get(self._api_location, verify=False)
 
         public_stations: list[dict[str, str]] = list(filter(lambda x: x['Tipo Venta'] == 'P', res.json()["ListaEESSPrecio"]))
 
